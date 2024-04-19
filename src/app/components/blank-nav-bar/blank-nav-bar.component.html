@@ -1,0 +1,63 @@
+<nav #navBar class="navbar navbar-expand-lg light-bg navbar-dark ">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="">
+        <img src="./assets/assets/images/Capture.PNG" width="150" alt="logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mt-2 mb-2 mb-lg-0">
+          
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/home" routerLinkActive="active-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/products" routerLinkActive="active-link">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/categories" routerLinkActive="active-link">Categories</a>
+          </li>
+          
+        </ul>
+        <ul class="navbar-nav ms-auto mt-2   mt-lg-0  align-items-center ">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-user fa-xl main-text "></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/forgetPassword"   role="button ">Forgot Password</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item position-relative">
+            <a class="nav-link " routerLink="/wishlist" >
+              <i class="fa-solid fa-solid fa-heart main-text fa-xl"></i>
+              <span class="badge bg-danger position-absolute top-0 end-0">{{wishCount}}</span>
+            </a>
+          </li>
+
+
+          <li class="nav-item position-relative">
+            <a class="nav-link " routerLink="/cart" >
+              <i class="fa-solid fa-cart-shopping main-text fa-xl"></i>
+              <span class="badge bg-danger position-absolute top-0 end-0">{{cartCount}}</span>
+            </a>
+          </li>
+            <li class="nav-item d-flex pt-2   gap-3   pb-0">
+                <i class="main-text fa-brands  fa-facebook h5 "></i>
+                <i class="main-text fa-brands fa-youtube h5"></i>
+                <i class="main-text fa-brands fa-tiktok h5"></i>
+                <i class="main-text fa-brands fa-instagram h5"></i>
+              </li>
+          
+       
+              <li class="nav-item align-items-center">
+                <span (click)="signOut()" role="button" class="main-text ms-2">Signout</span>
+              </li>
+          
+            
+          </ul>
+      </div>
+    </div>
+  </nav>

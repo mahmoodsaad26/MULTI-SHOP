@@ -1,0 +1,21 @@
+<section class="w-75 mx-auto mt-5 shadow rounded p-3">
+    <h2 class="h3">All Orders</h2>
+    <div *ngFor="let item of allOrders" class="mb-3 border-bottom">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <p>Total price: <span class="category-color">{{item.totalOrderPrice}}</span></p>
+            <p>Created at:<span class="category-color">{{item.createdAt.split('T',1).join()}}</span></p>
+        </div>
+            <div class="row mb-2" *ngFor="let prod of item.cartItems">
+                <div class="col-md-2">
+                    <img class="w-100" [src]="prod.product.imageCover" [alt]="prod.product.title">
+                </div>
+                <div class="col-md-10">
+                    <p>{{prod.product.title}}</p>
+                    <p class="category-color">{{prod.product.category.name}}</p>
+                </div>
+            </div>
+        
+    </div>
+
+</section>

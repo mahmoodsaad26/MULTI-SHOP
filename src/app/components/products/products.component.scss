@@ -1,0 +1,17 @@
+$lightColor:#3D464D;
+$mainColor:#FFCB0D;
+.my-pagination ::ng-deep .ngx-pagination .current {
+    background-color: $mainColor;
+    color: $lightColor;
+    border-radius: 20%;
+  }
+
+  .form-control{
+    border-radius: 0;
+    &:focus{
+        border-color: #FFCB0D;
+        box-shadow: none;
+
+    }
+}
+

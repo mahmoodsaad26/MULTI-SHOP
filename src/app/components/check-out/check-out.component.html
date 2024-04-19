@@ -1,0 +1,26 @@
+<section class="w-75 mx-auto mt-4 rounded shadow p-3">
+  <form [formGroup]="checkoutForm" (ngSubmit)="handleForm()">
+    <div class="form-item mx-auto mb-3 mt-2">
+        <label for="details">details:</label>
+        <input type="text" id="details" class="form-control" formControlName="details">
+        <div class="alert alert-danger mt-1" *ngIf="checkoutForm.get('details')?.touched&&checkoutForm.get('details')?.errors">
+            <p class="m-0">details is required</p>
+        </div>
+    </div>
+    <div class="form-item  mb-2 ">
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" class="form-control" formControlName="phone">
+        <div class="alert alert-danger mt-1" *ngIf="checkoutForm.get('phone')?.touched&&checkoutForm.get('phone')?.errors">
+            <p class="m-0">phone is required</p>
+        </div>
+    </div>
+    <div class="form-item  mx-auto mb-2 ">
+        <label for="city">City:</label>
+        <input type="text" id="city" class="form-control" formControlName="city">
+        <div class="alert alert-danger mt-1" *ngIf="checkoutForm.get('city')?.touched&&checkoutForm.get('city')?.errors">
+            <p class="m-0">city is required</p>
+        </div>
+    </div>
+    <button [disabled]="checkoutForm.invalid" class="main-btn d-block ms-auto">Checkout</button>
+  </form>
+</section>

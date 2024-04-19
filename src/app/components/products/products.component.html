@@ -1,0 +1,41 @@
+<section *ngIf="products.length>0" class="mb-4">
+    <h2 class="light-text">Products..</h2>
+    <input [(ngModel)]="searchValue" type="text" class="form-control w-50 mx-auto my-3" placeholder="Search...">
+    <div class="row g-4 justify-content-center">
+        <div *ngFor="let item of products|search:searchValue| paginate: { id: 'productPaginate',
+        itemsPerPage: pageSize,
+        currentPage: currentPage,
+        totalItems: total }" class="col-sm-12 col-md-6 col-lg-3 col-xl-2 ">
+            <div class="product h-100">
+                <i *ngIf="!wishlistData.includes(item._id)" (click)="addProductToWishlist(item._id)" class="fa-regular fa-heart heart "></i>
+                <i *ngIf="wishlistData.includes(item._id)" (click)="removeProduct(item._id)" class="fa-solid fa-heart text-danger heart "></i>
+                <header role="button" [routerLink]="['/product-details',item._id]">
+                    <img class="w-100 " [src]="item.imageCover" [alt]="item.category.name">
+                    <h3 class="h6 ">{{item.title |cutText:3}}</h3>
+                    <h4 class="h6 category-color ">{{item.category.name}}</h4>
+                    <div class="d-flex justify-content-between">
+                        <span>{{item.price|currency:'EGP '}}</span>
+                        <span class="text-muted flex-shrink-0">{{item.ratingsAverage}} <i
+                                class="fas fa-star" *ngFor="let x of [1,2,3,4,5]" [ngClass]="{
+                                'rating-color':x<=item.ratingsAverage}"></i></span>
+
+                    </div>
+                </header>
+                <footer class="m-1">
+                    <button #addBtn (click)="addProductToCart(item._id,addBtn)" class="main-btn w-100">+Add to
+                        cart</button>
+                </footer>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="text-center mt-4">
+        <pagination-controls class="my-pagination" id="productPaginate" (pageChange)="pageChanged($event)"
+            (pageBoundsCorrection)="pageChanged($event)" [maxSize]="9" [directionLinks]="true" [autoHide]="true"
+            [responsive]="true" previousLabel="Previous" nextLabel="Next" screenReaderPaginationLabel="Pagination"
+            screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+        </pagination-controls>
+    </div>
+</section>

@@ -1,0 +1,33 @@
+<section class="light-bg w-75 mx-auto m-4 p-3 rounded-4 main-shadow">
+    <h2 class="main-text">Login Now:</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="handleLogin()">
+        
+        <div class="input-item mb-2">
+            <label class="text-white"  for="email">Email:</label>
+            <input type="email" id="email" formControlName="email" class="form-control">
+            <div *ngIf="loginForm.get('email')?.touched&&loginForm.get('email')?.errors" class="alert alert-danger mt-2">
+                <p *ngIf="loginForm.get('email')?.getError('required')" class="m-0 ">email is required</p>
+                <p *ngIf="loginForm.get('email')?.getError('email')" class="m-0">Incorrect email</p>
+           </div>
+        </div>
+        <div class="input-item mb-2 ">
+            <label class="text-white"  for="password">Password:</label>
+            <input type="password" id="password" formControlName="password" class="form-control">
+            <div *ngIf="loginForm.get('password')?.touched&&loginForm.get('password')?.errors" class="alert alert-danger mt-2">
+                <p *ngIf="loginForm.get('password')?.getError('required')" class="m-0 ">password is required</p>
+                <p *ngIf="loginForm.get('password')?.getError('pattern')" class="m-0">must be at least 6 chars</p>
+           </div>
+        </div>
+
+        <div *ngIf="errMsg" class="alert alert-danger">
+            <p class="m-0">{{errMsg}}</p>
+        </div>
+       
+     <div class="d-flex justify-content-between align-items-center">
+        <button [disabled]="loginForm.invalid" type="submit" class="main-btn  ">Login</button>
+        <a class="main-text" role="button" routerLink="/forgetPass">Forgot Password?</a>
+     </div>
+    </form>
+
+</section>
+

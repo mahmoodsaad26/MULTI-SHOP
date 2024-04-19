@@ -1,0 +1,29 @@
+<section class="w-75 mx-auto my-4 shadow rounded p-3 " *ngIf="hasItems;else empty">
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 class="h2">Shop Cart</h1>
+        <button #clearBtn (click)="clearAll(clearBtn)" class="btn btn-sm btn-danger">Clear All</button>
+    </div>
+    <p>total price: <span class="category-color">{{cart?.data?.totalCartPrice|currency:'EGP '}}</span></p>
+    <div class="row border-bottom py-2" *ngFor="let item of cart?.data?.products">
+        <div class="col-md-1">
+            <img class="w-100" [src]="item.product.imageCover" [alt]="item.product.title">
+        </div>
+        <div class="col-md-11 d-flex justify-content-between align-items-center">
+            <div>
+                <h3 class="h6">{{item.product.title}}</h3>
+                <p class="mb-0">Price: <span class="category-color">{{item.price |currency:'EGP '}}</span></p>
+                <button #removeBtn (click)="removeItem(item.product._id,removeBtn)" class="btn text-danger p-0"><i class="fa fa-trash"></i> remove </button>
+            </div>
+            <div>
+                <button #contdDecrease (click)="updateCount(item.product._id,item.count-1,contdDecrease,contdIncrease)" class="main-btn btn-sm">-</button>
+                <span class="px-2">{{item.count}}</span>
+                <button #contdIncrease (click)="updateCount(item.product._id,item.count+1,contdDecrease,contdIncrease)" class="main-btn btn-sm">+</button>
+            </div>
+        </div>
+    </div>
+    <button [routerLink]="['/checkout',cart?.data?._id]" class="main-btn d-block ms-auto mt-3 py-0 ">Proceed to Checkout <img src="./assets/assets/images/visa-1.svg" alt="visa logo"> </button>
+</section>
+
+<ng-template  #empty>
+   <h1 class="text-center m-5"> Your cart is empty!</h1>
+</ng-template>
